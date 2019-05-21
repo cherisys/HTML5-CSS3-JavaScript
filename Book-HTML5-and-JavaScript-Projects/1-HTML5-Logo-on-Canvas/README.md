@@ -1,4 +1,4 @@
-Learning objects:<br>
+Learning objectives:<br>
 • Drawing paths on a canvas<br>
 • Placing text on a canvas<br>
 • Coordinate transformations<br>
