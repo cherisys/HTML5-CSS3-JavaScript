@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>HTML5 Logo on Canvas</title>
+<meta charset="UTF-8">
+
+<style type="text/css">
+    @font-face {
+        font-family: 'Gill Sans Ultra Bold';
+        src: url(GillSansUltraBold.ttf);
+    }
+
+    canvas {
+        font-family:'Gill Sans Ultra Bold';
+    }
+</style>
+</head>
+
+<body onload="init()" style="padding:30px;">
+
+    <canvas id="canvas" width="400" height="400">
+        Your Browser doesn't support canvas element.
+    </canvas>
+    <br>
+    <input type="range" min="0" max="100" value="100" onChange="changescale(this.value)" step="10"/>
+</body>
+
+<script type="text/javascript">
+
+    var factorvalue,ctx,fontfamily;
+
+    function init(){
+        factorvalue = 1;
+        ctx = document.getElementById("canvas").getContext("2d");
+        fontfamily = "65px 'Gill Sans Ultra Bold', sans-serif";
+        ctx.font = fontfamily; 
+        ctx.save();
+        dologo();
+    }
+
+    function dologo() {
+        var offsety = 80 ;
+        ctx.restore();
+        ctx.save();
+        ctx.clearRect(0,0,600,400);
+        ctx.scale(factorvalue,factorvalue);
+        ctx.fillText("HTML", 31,60);
+        ctx.translate(0,offsety);
+
+        // Filling base block
+        ctx.fillStyle = "#E34C26";
+        ctx.beginPath();
+        ctx.moveTo(39, 250);
+        ctx.lineTo(17, 0);
+        ctx.lineTo(262, 0);
+        ctx.lineTo(239, 250);
+        ctx.lineTo(139, 278);
+        ctx.closePath();
+        ctx.fill();
+
+        // right hand, lighter orange part of the background
+        ctx.fillStyle = "#F06529";
+        ctx.beginPath();
+        ctx.moveTo(139, 257);
+        ctx.lineTo(220, 234);
+        ctx.lineTo(239, 20);
+        ctx.lineTo(139, 20);
+        ctx.closePath();
+        ctx.fill();
+
+        //light gray, right hand side part of the 5.
+        ctx.fillStyle = "#EBEBEB"; 
+        ctx.beginPath(); 
+        ctx.moveTo(139, 113); 
+        ctx.lineTo(98, 113); 
+        ctx.lineTo(96, 82); 
+        ctx.lineTo(139, 82);
+        ctx.lineTo(139, 51);
+        ctx.lineTo(62, 51);
+        ctx.lineTo(70, 144); 
+        ctx.lineTo(139, 144); 
+        ctx.closePath(); 
+        ctx.fill(); 
+        ctx.beginPath(); 
+        ctx.moveTo(139, 193); 
+        ctx.lineTo(105, 184); 
+        ctx.lineTo(103, 159); 
+        ctx.lineTo(72, 159); 
+        ctx.lineTo(76, 207); 
+        ctx.lineTo(139, 225); 
+        ctx.closePath();
+        ctx.fill();
+
+        //white, right hand side part of the 5.
+        ctx.fillStyle = "#FFFFFF";
+        ctx.beginPath(); 
+        ctx.moveTo(139, 51); 
+        ctx.lineTo(139, 82); 
+        ctx.lineTo(213, 82); 
+        ctx.lineTo(216, 51); 
+        ctx.closePath(); 
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(139, 113);
+        ctx.lineTo(139, 144); 
+        ctx.lineTo(177, 144); 
+        ctx.lineTo(173, 184); 
+        ctx.lineTo(139, 193); 
+        ctx.lineTo(139, 225); 
+        ctx.lineTo(202, 207); 
+        ctx.lineTo(210, 113); 
+        ctx.closePath(); 
+        ctx.fill();
+    }
+
+    function changescale(val){
+        factorvalue = val / 100;
+        dologo();
+    }
+</script>
+
+</html>
