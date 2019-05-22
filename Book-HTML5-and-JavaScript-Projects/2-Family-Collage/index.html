@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html >
+<html>
+<head>
+    <title>Family Collage</title>
+    <meta charset="UTF-8">
+    <style>
+        canvas {position:absolute; top:80px;    
+            cursor:crosshair;
+        }
+        video {display:none;}
+    </style>
+</head>
+
+<body onLoad="init();">
+    Mouse down, move and mouse up to move objects. Double click for make a copy of any object.
+<br/>
+<canvas id="canvas" width="800" height="600">
+    Your browser doesn't recognize the canvas element 
+</canvas>
+
+<button onClick="saveasimage();">Open window with image (which you can save into image file) </button></br>
+<button onClick="removeobj();">Remove last object moved </button>
+
+<script src="js/InitAndCreate.js"></script>
+<script src="js/MediaInfo.js"></script>
+<script src="js/HeartObject.js"></script> 
+<script src="js/OvalObject.js"></script>
+<script src="js/RectObject.js"></script>
+<script src="js/PictureObject.js"></script>
+<script src="js/VideoObject.js"></script>
+<script src="js/CopyItem.js"></script>
+<script src="js/DragItem.js"></script>
+<script src="js/SaveAndRemove.js"></script>
+
+<script language="Javascript">
+
+    function restart(ev) {
+        var v = ev.target;
+        v.currentTime=0;
+        v.play();
+    }
+
+    function videoloaded(ev) {
+        ctx.fillText(ev.target.id+" loaded.",400,100*videocount);
+        
+        ev.target.play();
+        videocount--;
+        if (videocount==0) {
+        
+        okaytogo = true;	
+        }
+    }
+
+
+    function loading() {
+        
+        if (okaytogo) {
+            clearInterval(loadid);
+            tid = setInterval(drawstuff,40);
+        }	
+        else {
+            textmsg+=".";
+            ctx.fillText(textmsg,100,100);
+        }
+    }
+
+    function distsq (x1,y1,x2,y2) {
+        //done to avoid taking square roots
+        var xd = x1 - x2;
+        var yd = y1 - y2;
+        return ((xd*xd) + (yd*yd) );
+    }
+
+
+    function outside(x,y,w,h,mx,my) {
+        return ((mx<x) || (mx > (x+w)) || (my < y) || (my > (y+h)));	
+    }
+
+    function drawstuff() {
+        ctx.clearRect(0,0,800,600);
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(0,0,800,600);
+        for (var i=0;i<stuff.length;i++) {
+            stuff[i].draw();
+        }	
+    }
+</script>
+</body>
+</html>
