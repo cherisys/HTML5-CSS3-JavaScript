@@ -1,4 +1,4 @@
-Learning objectives:
+Learning objectives:<br>
 • Creating and manipulating object oriented programming for drawing on canvas<br>
 • Handling mouse events, including double-clicks<br>
 • Saving the canvas to an image<br>
